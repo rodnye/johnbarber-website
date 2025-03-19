@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import './animations.css';
+@import './fonts.css';
+
+html {
+  @apply bg-gray-200;
+}
