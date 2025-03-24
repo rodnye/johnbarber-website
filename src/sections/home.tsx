@@ -5,7 +5,13 @@ import { heroImg, textLogo } from "../assets";
 export function HomeSection() {
   return (
     <div className="flex flex-col">
-      <Navbar />
+      <Navbar
+        menuOptions={[
+          { label: "Cortes", href: "examples-section" },
+          { label: "Servicios", href: "services-section" },
+          { label: "Contáctame", href: "contact-section" },
+        ]}
+      />
       <div
         className="flex items-end justify-end p-6 pt-28"
         style={{
@@ -16,7 +22,7 @@ export function HomeSection() {
         <img src={textLogo} className="w-40" />
       </div>
       <AnimatedTextSwitcher
-        className="text-sm"
+        className="text-sm md:text-2xl"
         startText=" Ven y obtendrás "
         words={[
           "las sombras",

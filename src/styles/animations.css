@@ -1,4 +1,6 @@
-
+/**  
+ * Fade
+ */
 .fade-enter {
   opacity: 0;
 }
@@ -15,4 +17,57 @@
 .fade-exit-active {
   opacity: 0;
   transition: opacity 300ms ease-in;
+}
+
+/**
+ * Zoom
+ */
+.zoom-enter {
+  scale: 1.3;
+  transform: rotate(10deg);
+  opacity: 0;
+}
+
+.zoom-enter-active {
+  scale: 1;
+  transform: rotate(0);
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}
+
+.zoom-exit {
+  scale: 1;
+  transform: rotate(0);
+  opacity: 1;
+}
+
+.zoom-exit-active {
+  scale: .5;
+  opacity: 0;
+  transform: rotate(10deg);
+  transition: all 300ms ease-in-out;
+}
+
+@keyframes shakeAndZoom {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  2% {
+    transform: scale(1.2) rotate(-5deg);
+  }
+  4% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  6% {
+    transform: scale(1.2) rotate(-5deg);
+  }
+  8% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  10% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  20% {
+    transform: scale(1) rotate(0deg);
+  }
 }

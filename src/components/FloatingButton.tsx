@@ -1,8 +1,14 @@
-import React from "react";
+import { PropsWithChildren, Ref } from "react";
 
-export function FloatingButton({ children }: React.PropsWithChildren) {
+interface Props extends PropsWithChildren {
+  ref?: Ref<HTMLDivElement>;
+}
+export function FloatingButton({ children, ref }: Props) {
   return (
-    <div className="fixed right-3 bottom-3 z-50 flex cursor-pointer items-center justify-center rounded-4xl p-6 shadow-2xl">
+    <div
+      ref={ref}
+      className="fixed right-6 bottom-6 z-50 flex cursor-pointer items-center justify-center rounded-4xl"
+    >
       {children}
     </div>
   );

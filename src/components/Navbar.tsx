@@ -4,13 +4,11 @@ import { Dropdown } from "./Dropdown";
 import { useRef, useState } from "react";
 import { LinkButton } from "./Link";
 
-const menuOptions = [
-  { label: "Cortes", href: "#hair-examples" },
-  { label: "Servicios", href: "#" },
-  { label: "Contáctame", href: "#" },
-];
+interface Props {
+  menuOptions: { label: string; href: string }[];
+}
 
-export function Navbar({}) {
+export function Navbar({ menuOptions }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -18,19 +16,16 @@ export function Navbar({}) {
     <>
       <div className="flex flex-col items-center justify-between bg-gray-950 lg:hidden">
         <div className="flex w-full items-center justify-between p-6">
-          <img src={textLogoImg} className="h-10" />
+          <img src={textLogoImg} className="h-7 lg:h-10" />
           <HamburguerButton onClick={() => setIsOpen(!isOpen)} />
         </div>
         <Dropdown show={isOpen} nodeRef={menuRef}>
           <ul
-            className="flex w-full flex-col p-10 items-center text-2xl text-white"
+            className="flex w-full flex-col items-center p-10 text-2xl text-white"
             ref={menuRef}
           >
             {menuOptions.map((item) => (
-              <li
-                className="playr-font mt-2"
-                key={item.label}
-              >
+              <li className="playr-font mt-2" key={item.label}>
                 <LinkButton to={item.href} className="w-64">
                   {item.label}
                 </LinkButton>
@@ -41,7 +36,7 @@ export function Navbar({}) {
       </div>
 
       <div className="hidden items-center justify-between bg-gray-950 p-6 lg:flex">
-        <img src={textLogoImg} className="h-10 m-6" />
+        <img src={textLogoImg} className="m-6 h-10" />
         <ul className="playr-font flex items-center text-xl font-bold text-white *:m-2 *:p-2">
           {menuOptions.map((item) => (
             <li key={item.label}>

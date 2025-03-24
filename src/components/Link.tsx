@@ -1,3 +1,4 @@
+import { Link } from "react-scroll";
 import styled from "styled-components";
 
 interface Props extends React.PropsWithChildren {
@@ -8,12 +9,12 @@ interface Props extends React.PropsWithChildren {
 export function LinkButton({ children, className, to }: Props) {
   return (
     <StyledWrapper>
-      <a href={to}>
+      <Link to={to} smooth={true} duration={500}>
         <button className="btn">
           <div className={className}> {children} </div>
           <div className="bg" />
         </button>
-      </a>
+      </Link>
     </StyledWrapper>
   );
 }

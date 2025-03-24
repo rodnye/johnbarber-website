@@ -43,7 +43,7 @@ const StyledWrapper = styled.div<{ $count: number }>`
     flex-wrap: wrap;
     border-radius: 8px;
     text-align: center;
-    font-size: 2em;
+    font-size: 1em;
   }
 
   .words {

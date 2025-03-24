@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 
-export const useImageLoader = (list: (string|undefined)[], options = { lazy: true}) => {
+export const useImageLoader = (list: (string|undefined)[]) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
@@ -13,9 +13,10 @@ export const useImageLoader = (list: (string|undefined)[], options = { lazy: tru
           if (!src) return resolve();
 
           const image = new Image();
-          if (options.lazy) image.loading = "lazy";
           image.src = src;
-          image.onload = () => resolve();
+          image.onload = () => {
+            resolve();
+          }
           image.onerror = () => {
             setHasError(true);
             resolve();
