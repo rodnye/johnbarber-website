@@ -1,6 +1,4 @@
 import { PropsWithChildren, ReactNode, useState } from "react";
-import { useImageLoader } from "../utils/loader";
-import { Loader } from "./Loader";
 import cx from "classix";
 import { ImgWithLoader } from "./ImgWithLoader";
 
@@ -12,7 +10,7 @@ interface Props extends PropsWithChildren {
   className?: string;
 }
 
-export function Card({ children, icon, imageSrc, title, w, className }: Props) {
+export function Card({ children, icon, imageSrc, title, w }: Props) {
   const [isLoaded, setIsLoaded] = useState(!imageSrc);
 
   return (

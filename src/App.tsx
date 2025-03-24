@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useCSSLoader, useImageLoader } from "./utils/loader";
@@ -45,7 +44,8 @@ function App() {
 
     // hide and show
 
-    window.addEventListener("scroll", (e) => {
+    window.addEventListener("scroll", () => {
+      if (!contactSectionRef.current) return;
       if (contactSectionRef.current.getBoundingClientRect().top < innerHeight) {
         setShowFab(false);
       } else setShowFab(true);
