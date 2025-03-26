@@ -1,20 +1,24 @@
+import { Ref, useRef, useState } from "react";
 import textLogoImg from "../assets/text_inline_logo.svg";
 import { HamburguerButton } from "./HamburguerButton";
 import { Dropdown } from "./Dropdown";
-import { useRef, useState } from "react";
 import { LinkButton } from "./Link";
 
 interface Props {
   menuOptions: { label: string; href: string }[];
+  ref?: Ref<HTMLDivElement>;
 }
 
-export function Navbar({ menuOptions }: Props) {
+export function Navbar({ menuOptions, ref }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
   return (
-    <>
-      <div className="flex flex-col items-center justify-between bg-gray-950 lg:hidden">
+    <nav
+      className="bg-opacity-25 top-0 z-50 w-full bg-gray-950"
+      ref={ref}
+    >
+      <div className="flex flex-col items-center justify-between lg:hidden">
         <div className="flex w-full items-center justify-between p-6">
           <img src={textLogoImg} className="h-7 lg:h-10" />
           <HamburguerButton onClick={() => setIsOpen(!isOpen)} />
@@ -35,7 +39,7 @@ export function Navbar({ menuOptions }: Props) {
         </Dropdown>
       </div>
 
-      <div className="hidden items-center justify-between bg-gray-950 p-6 lg:flex">
+      <div className="hidden items-center justify-between p-6 lg:flex">
         <img src={textLogoImg} className="m-6 h-10" />
         <ul className="flex items-center text-xl text-white *:m-2 *:p-2">
           {menuOptions.map((item) => (
@@ -47,6 +51,6 @@ export function Navbar({ menuOptions }: Props) {
           ))}
         </ul>
       </div>
-    </>
+    </nav>
   );
 }

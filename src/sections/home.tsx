@@ -1,11 +1,17 @@
+import { Ref } from "react";
 import { AnimatedTextSwitcher } from "../components/AnimatedTextSwitcher";
 import { Navbar } from "../components/Navbar";
 import { heroImg, textLogo } from "../assets";
 
-export function HomeSection() {
+interface Props {
+  navbarRef?: Ref<HTMLDivElement>
+}
+
+export function HomeSection({ navbarRef }: Props) {
   return (
     <div className="flex flex-col">
       <Navbar
+        ref={navbarRef}
         menuOptions={[
           { label: "Cortes", href: "examples-section" },
           { label: "Servicios", href: "services-section" },

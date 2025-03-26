@@ -15,7 +15,7 @@ import heroImg from "./assets/hero.jpg";
 import { Link } from "react-scroll";
 
 function App() {
-  const [showFab, setShowFab] = useState(true);
+  const [showFab, setShowFab] = useState(false);
 
   // loader values
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +32,7 @@ function App() {
   // references for transitions
   const loaderRef = useRef(null);
   const appRef = useRef(null);
+  const navbarRef = useRef<HTMLDivElement>(null);
   const contactSectionRef = useRef<HTMLDivElement>(null);
   const fabRef = useRef(null);
 
@@ -43,12 +44,15 @@ function App() {
     );
 
     // hide and show
-
     window.addEventListener("scroll", () => {
-      if (!contactSectionRef.current) return;
-      if (contactSectionRef.current.getBoundingClientRect().top < innerHeight) {
+      if (!contactSectionRef.current || !navbarRef.current) return;
+
+      if (
+        navbarRef.current.getBoundingClientRect().bottom > 0 ||
+        contactSectionRef.current.getBoundingClientRect().top < innerHeight
+      )
         setShowFab(false);
-      } else setShowFab(true);
+      else setShowFab(true);
     });
   }, []);
 
@@ -93,7 +97,7 @@ function App() {
           ref={appRef}
         >
           <div className="relative w-full overflow-x-hidden overflow-y-auto">
-            <HomeSection />
+            <HomeSection navbarRef={navbarRef} />
             <ExamplesSection />
             <ServicesSection />
             <ContactSection ref={contactSectionRef} />
