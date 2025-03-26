@@ -23,7 +23,6 @@ const StyledWrapper = styled.div`
   .btn {
     position: relative;
     transform: translate(0, 0);
-    font-weight: 600;
     height: 1.5em;
     line-height: 1.5em;
     cursor: pointer;

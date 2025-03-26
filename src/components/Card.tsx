@@ -33,7 +33,7 @@ export function Card({ children, icon, imageSrc, title, w }: Props) {
           <ImgWithLoader
             src={imageSrc}
             onLoad={() => setIsLoaded(true)}
-            className="rounded-tr-xl rounded-b-xl"
+            className="w-full rounded-tr-xl rounded-b-xl"
           />
         )}
         {isLoaded && title && <h1 className="text-lg font-bold"> {title} </h1>}

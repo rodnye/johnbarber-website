@@ -25,7 +25,7 @@ export function Navbar({ menuOptions }: Props) {
             ref={menuRef}
           >
             {menuOptions.map((item) => (
-              <li className="playr-font mt-2" key={item.label}>
+              <li className="mt-2" key={item.label}>
                 <LinkButton to={item.href} className="w-64">
                   {item.label}
                 </LinkButton>
@@ -37,7 +37,7 @@ export function Navbar({ menuOptions }: Props) {
 
       <div className="hidden items-center justify-between bg-gray-950 p-6 lg:flex">
         <img src={textLogoImg} className="m-6 h-10" />
-        <ul className="playr-font flex items-center text-xl font-bold text-white *:m-2 *:p-2">
+        <ul className="flex items-center text-xl text-white *:m-2 *:p-2">
           {menuOptions.map((item) => (
             <li key={item.label}>
               <LinkButton className="w-36" to={item.href}>
