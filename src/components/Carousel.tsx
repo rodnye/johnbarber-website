@@ -6,10 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 
 interface Props {
   children: ReactElement[];
+  slidesToShow?: number;
 }
 
-export function Carousel({ children }: Props) {
-
+export function Carousel({ slidesToShow = 2, children }: Props) {
   return (
     <Slider
       dots
@@ -17,7 +17,7 @@ export function Carousel({ children }: Props) {
       arrows
       autoplay
       speed={500}
-      slidesToShow={2}
+      slidesToShow={slidesToShow}
       slidesToScroll={1}
     >
       {children}
