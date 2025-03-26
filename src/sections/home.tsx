@@ -17,6 +17,7 @@ export function HomeSection() {
         style={{
           backgroundImage: `url(${heroImg})`,
           backgroundSize: "100%",
+          backgroundPosition: "center"
         }}
       >
         <img src={textLogo} className="w-40" />
