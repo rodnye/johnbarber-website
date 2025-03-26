@@ -30,9 +30,15 @@ export function ContactSection({ ref }: Props) {
               className="relative top-8 rounded-full"
             />
             <div className="relative bottom-8 flex w-full items-center justify-center">
-              <img src={facebookIcon} className={socialClassNames} />
-              <img src={whatsappIcon} className={socialClassNames} />
-              <img src={instagramIcon} className={socialClassNames} />
+              <a href="https://wa.me/5356086003?text=Hola%2C%20quiero%20reservar%20un%20turno">
+                <img src={whatsappIcon} className={socialClassNames} />
+              </a>
+              <a href="https://www.facebook.com/JohnBarber0">
+                <img src={facebookIcon} className={socialClassNames} />
+              </a>
+              <a href="https://www.instagram.com/johnmr_0">
+                <img src={instagramIcon} className={socialClassNames} />
+              </a>
             </div>
           </div>
         </div>

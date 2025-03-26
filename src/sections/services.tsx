@@ -32,8 +32,8 @@ const servicesList = [
     price: 800,
     info: [
       "Se cobra por onza",
-      "Prepara tu pelo para algún tinte",
-      "Pelo completamente blanco",
+      "Prepara tu cabello para algún tinte",
+      "Cabello completamente blanco",
     ],
     icon: decors[7],
   },
