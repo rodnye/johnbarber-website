@@ -1,5 +1,5 @@
 import cx from "classix";
-import React, { JSX, RefObject } from "react";
+import { JSX, RefObject } from "react";
 import styled from "styled-components";
 
 interface Props extends React.PropsWithChildren {
