@@ -11,35 +11,55 @@ interface Props extends PropsWithChildren {
   className?: string;
 }
 
-export function Card({ children, icon, imageSrc, title, w }: Props) {
+export function Card({ children, icon, imageSrc, title, w, className }: Props) {
   const [isLoaded, setIsLoaded] = useState(!imageSrc);
 
   return (
     <div
       className={cx(
-        "relative m-4 flex flex-col transition hover:translate-5",
-        w || "w-60",
+        "group ease-elegant relative m-4 flex flex-col transition-all duration-300 hover:-translate-y-1",
+        w || "w-64",
+        className,
       )}
     >
-      {icon && (
-        <Image
-          src={icon}
-          alt=""
-          className="absolute -right-5 -bottom-5 z-20 h-1/3 rotate-12"
-        />
-      )}
-      <div className="h-12 w-2/5 rounded-t-xl bg-white" />
-      <div className="absolute top-3 left-3 h-9 w-1/2 rounded-t-xl bg-gray-950" />
-      <div className="relative z-10 flex w-full flex-grow-1 flex-col items-center rounded-tr-2xl rounded-b-2xl bg-white p-3">
+      {/* Header decorativo */}
+      <div className="relative h-4">
+        <div className="absolute top-0 left-4 h-4 w-24 rounded-t-lg bg-gradient-to-r from-gray-100 to-gray-200" />
+        <div className="absolute top-1 left-5 h-3 w-20 rounded-t-md bg-gray-300/40" />
+      </div>
+
+      {/* Contenido principal */}
+      <div className="relative z-10 flex w-full flex-grow flex-col overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl">
         {imageSrc && (
-          <ImgWithLoader
-            src={imageSrc}
-            onLoad={() => setIsLoaded(true)}
-            className="w-full rounded-tr-xl rounded-b-xl"
-          />
+          <div className="overflow-hidden">
+            <ImgWithLoader
+              src={imageSrc}
+              onLoad={() => setIsLoaded(true)}
+              className="w-full transition-transform duration-500 ease-out group-hover:scale-105"
+            />
+          </div>
         )}
-        {isLoaded && title && <h1 className="text-lg font-bold"> {title} </h1>}
-        {isLoaded && children}
+
+        {/* Icono decorativo */}
+        {icon && (
+          <div className="absolute -top-4 -right-4 z-20 h-16 w-16 rounded-full bg-white p-1 shadow-md transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+            <Image src={icon} alt="" className="h-full w-full object-contain" />
+          </div>
+        )}
+
+        {/* Contenido textual */}
+        <div className="p-5">
+          {isLoaded && title && (
+            <h2 className="mb-3 text-xl font-semibold text-gray-800 transition-colors duration-300 group-hover:text-gray-900">
+              {title}
+            </h2>
+          )}
+          {isLoaded && (
+            <div className="text-gray-600 transition-colors duration-300 group-hover:text-gray-700">
+              {children}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

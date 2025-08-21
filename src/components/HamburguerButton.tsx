@@ -1,10 +1,17 @@
 import styled from "styled-components";
 
-export function HamburguerButton({ onClick = () => {} }) {
+interface HamburguerButtonProps {
+  onClick?: () => void;
+  isOpen?: boolean;
+}
+
+export function HamburguerButton({
+  onClick = () => {},
+  isOpen = false,
+}: HamburguerButtonProps) {
   return (
     <StyledWrapper>
-      <div className="hamburger" onClick={onClick}>
-        <input className="checkbox" type="checkbox" />
+      <div className={`hamburger ${isOpen ? "open" : ""}`} onClick={onClick}>
         <svg fill="none" viewBox="0 0 50 50" height={50} width={50}>
           <path
             className="lineTop line"
@@ -39,6 +46,7 @@ const StyledWrapper = styled.div`
     width: 50px;
     transform: 0.2s;
     position: relative;
+    cursor: pointer;
   }
   .hamburger .checkbox {
     position: absolute;
@@ -63,18 +71,18 @@ const StyledWrapper = styled.div`
   .lineMid {
     stroke-dasharray: 40 40;
   }
-  .hamburger .checkbox:checked + svg .line {
+  .hamburger.open svg .line {
     stroke: crimson;
   }
-  .hamburger .checkbox:checked + svg .lineTop {
+  .hamburger.open svg .lineTop {
     stroke-dashoffset: 0;
     transform-origin: left;
     transform: rotateZ(45deg) translate(-7px, -5px);
   }
-  .hamburger .checkbox:checked + svg .lineMid {
+  .hamburger.open svg .lineMid {
     stroke-dashoffset: 40;
   }
-  .hamburger .checkbox:checked + svg .lineBottom {
+  .hamburger.open svg .lineBottom {
     stroke-dashoffset: 0;
     transform-origin: left;
     transform: rotateZ(-45deg) translate(-5px, 5px);

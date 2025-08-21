@@ -6,7 +6,7 @@ import { TitleSection } from "../components/Typography";
 const servicesList = [
   {
     title: "Corte de cabello",
-    price: 350,
+    price: 500,
     info: [
       "Precio competitivo",
       "Todo tipo de sombras",
@@ -29,7 +29,7 @@ const servicesList = [
   },
   {
     title: "Decoloración completa",
-    price: 800,
+    price: 900,
     info: [
       "Se cobra por onza",
       "Prepara tu cabello para algún tinte",
@@ -39,19 +39,13 @@ const servicesList = [
   },
   {
     title: "Decoloración con diseño, mechas",
-    price: 600,
+    price: 700,
     info: ["Se cobra por onza"],
     icon: decors[7],
   },
   {
-    title: "Aplicación de color Nacional",
-    price: 250,
-    info: ["Se cobra por onza", "Producto nacional"],
-    icon: decors[2],
-  },
-  {
     title: "Aplicación de color Importado",
-    price: 700,
+    price: 500,
     info: ["Se cobra por onza", "Producto Importado"],
     icon: decors[2],
   },

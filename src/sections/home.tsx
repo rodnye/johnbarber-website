@@ -20,7 +20,7 @@ export function HomeSection({ navbarRef }: Props) {
         ]}
       />
       <div
-        className="flex items-end justify-end p-6 pt-28"
+        className="flex items-end justify-end p-16 pt-28"
         style={{
           backgroundImage: `url(${heroImg.src})`,
           backgroundSize: "100%",
