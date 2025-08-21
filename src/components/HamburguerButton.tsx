@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export function HamburguerButton({onClick = ()=>{}}) {
+export function HamburguerButton({ onClick = () => {} }) {
   return (
     <StyledWrapper>
       <div className="hamburger" onClick={onClick}>

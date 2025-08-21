@@ -7,6 +7,7 @@ import whatsappIcon from "../assets/whatsapp.png";
 import facebookIcon from "../assets/facebook.png";
 import instagramIcon from "../assets/instagram.png";
 import { Ref } from "react";
+import { Image } from "@/components/Image";
 
 interface Props {
   ref?: Ref<HTMLDivElement>;
@@ -31,13 +32,17 @@ export function ContactSection({ ref }: Props) {
             />
             <div className="relative bottom-8 flex w-full items-center justify-center">
               <a href="https://wa.me/5356086003?text=Hola%2C%20quiero%20reservar%20un%20turno">
-                <img src={whatsappIcon} className={socialClassNames} />
+                <Image alt="" src={whatsappIcon} className={socialClassNames} />
               </a>
               <a href="https://www.facebook.com/JohnBarber0">
-                <img src={facebookIcon} className={socialClassNames} />
+                <Image src={facebookIcon} alt="" className={socialClassNames} />
               </a>
               <a href="https://www.instagram.com/johnmr_0">
-                <img src={instagramIcon} className={socialClassNames} />
+                <Image
+                  src={instagramIcon}
+                  alt=""
+                  className={socialClassNames}
+                />
               </a>
             </div>
           </div>

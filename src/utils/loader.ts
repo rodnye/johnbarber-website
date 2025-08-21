@@ -1,22 +1,23 @@
-
+import { StaticImageData } from "@/components/Image";
 import { useEffect, useState } from "react";
 
-export const useImageLoader = (list: (string|undefined)[]) => {
+export const useImageLoader = (
+  list: (string | StaticImageData | undefined)[],
+) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    
     Promise.all(
       list.map((src) => {
         return new Promise<void>((resolve) => {
           if (!src) return resolve();
 
           const image = new Image();
-          image.src = src;
+          image.src = typeof src === "string" ? src : src.src;
           image.onload = () => {
             resolve();
-          }
+          };
           image.onerror = () => {
             setHasError(true);
             resolve();
@@ -24,11 +25,10 @@ export const useImageLoader = (list: (string|undefined)[]) => {
         });
       }),
     ).then(() => {
-      console.log("loaded all!")
+      console.log("loaded all!");
       setIsLoaded(true);
     });
-    
-  }, []);
+  });
 
   return { isLoaded, hasError };
 };
@@ -38,7 +38,6 @@ export const useCSSLoader = (list: string[]) => {
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    
     Promise.all(
       list.map((src) => {
         return new Promise<void>((resolve) => {
@@ -50,7 +49,7 @@ export const useCSSLoader = (list: string[]) => {
           link.onload = () => {
             console.log("ready:" + src);
             resolve();
-          }
+          };
           link.onerror = () => {
             setHasError(true);
             resolve();
@@ -60,8 +59,7 @@ export const useCSSLoader = (list: string[]) => {
     ).then(() => {
       setIsLoaded(true);
     });
-
-  }, []);
+  });
 
   return { isLoaded, hasError };
 };

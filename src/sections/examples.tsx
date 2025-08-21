@@ -1,8 +1,8 @@
-import { Card } from "../components/Card";
-import { decors, hairs } from "../assets";
-import { TitleSection } from "../components/Typography";
+import { Card } from "@/components/Card";
+import { decors, hairs } from "@/assets";
+import { TitleSection } from "@/components/Typography";
 import { Element } from "react-scroll";
-import { Carousel } from "../components/Carousel";
+import { Carousel } from "@/components/Carousel";
 import { useMediaQuery } from "react-responsive";
 
 export function ExamplesSection() {
@@ -18,18 +18,18 @@ export function ExamplesSection() {
         />
         <div className="w-full xl:hidden">
           <Carousel slidesToShow={isMediumScreen ? 2 : 1}>
-            {hairs.map((src) => (
-              <div>
+            {hairs.map((img) => (
+              <div key={img.src}>
                 <div className="flex w-full justify-center">
-                  <Card key={src} imageSrc={src} w="max-w-60" />
+                  <Card imageSrc={img} w="max-w-60" />
                 </div>
               </div>
             ))}
           </Carousel>
         </div>
         <div className="hidden flex-wrap-reverse items-start justify-center *:shrink-0 xl:flex">
-          {hairs.map((src) => (
-            <Card key={src} imageSrc={src} w="max-w-60" />
+          {hairs.map((img) => (
+            <Card key={img.src} imageSrc={img} w="max-w-60" />
           ))}
         </div>
       </div>

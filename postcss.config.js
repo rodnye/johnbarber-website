@@ -3,6 +3,6 @@ export default {
     "@tailwindcss/postcss": {},
 
     // add compatibility to safari old browsers
-    "@csstools/postcss-oklab-function": {}
-  }
-}
+    "@csstools/postcss-oklab-function": {},
+  },
+};

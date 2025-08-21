@@ -1,10 +1,11 @@
 import { Ref } from "react";
-import { AnimatedTextSwitcher } from "../components/AnimatedTextSwitcher";
-import { Navbar } from "../components/Navbar";
-import { heroImg, textLogo } from "../assets";
+import { AnimatedTextSwitcher } from "@/components/AnimatedTextSwitcher";
+import { Navbar } from "@/components/Navbar";
+import { heroImg, textLogo } from "@/assets";
+import { Image } from "@/components/Image";
 
 interface Props {
-  navbarRef?: Ref<HTMLDivElement>
+  navbarRef?: Ref<HTMLDivElement>;
 }
 
 export function HomeSection({ navbarRef }: Props) {
@@ -21,12 +22,12 @@ export function HomeSection({ navbarRef }: Props) {
       <div
         className="flex items-end justify-end p-6 pt-28"
         style={{
-          backgroundImage: `url(${heroImg})`,
+          backgroundImage: `url(${heroImg.src})`,
           backgroundSize: "100%",
-          backgroundPosition: "center"
+          backgroundPosition: "center",
         }}
       >
-        <img src={textLogo} className="w-40" />
+        <Image src={textLogo} alt="" className="w-40" />
       </div>
       <AnimatedTextSwitcher
         className="text-sm md:text-2xl"

@@ -1,10 +1,11 @@
 import { PropsWithChildren, ReactNode, useState } from "react";
 import cx from "classix";
 import { ImgWithLoader } from "./ImgWithLoader";
+import { Image, StaticImageData } from "@/components/Image";
 
 interface Props extends PropsWithChildren {
-  imageSrc?: string;
-  icon?: string;
+  imageSrc?: string | StaticImageData;
+  icon?: StaticImageData;
   title?: ReactNode;
   w?: string; // width in tailwind format
   className?: string;
@@ -21,8 +22,9 @@ export function Card({ children, icon, imageSrc, title, w }: Props) {
       )}
     >
       {icon && (
-        <img
+        <Image
           src={icon}
+          alt=""
           className="absolute -right-5 -bottom-5 z-20 h-1/3 rotate-12"
         />
       )}

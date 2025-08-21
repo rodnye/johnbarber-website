@@ -1,21 +1,26 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import { useCSSLoader, useImageLoader } from "./utils/loader";
-import { FloatingButton } from "./components/FloatingButton";
-import { Loader } from "./components/Loader";
+import { useCSSLoader, useImageLoader } from "@/utils/loader";
+import { FloatingButton } from "@/components/FloatingButton";
+import { Loader } from "@/components/Loader";
+import { Image } from "@/components/Image";
 
-import { HomeSection } from "./sections/home";
-import { ExamplesSection } from "./sections/examples";
-import { ServicesSection } from "./sections/services";
-import { ContactSection } from "./sections/contact";
+import { HomeSection } from "@/sections/home";
+import { ExamplesSection } from "@/sections/examples";
+import { ServicesSection } from "@/sections/services";
+import { ContactSection } from "@/sections/contact";
 
-import textLogoImg from "./assets/text_logo.svg";
-import whatsappImg from "./assets/whatsapp_logo.svg";
-import heroImg from "./assets/hero.jpg";
+import textLogoImg from "@/assets/text_logo.svg";
+import whatsappImg from "@/assets/whatsapp_logo.svg";
+import heroImg from "@/assets/hero.jpg";
 import { Link } from "react-scroll";
+import { VisitCounter } from "@/components/VisitCounter";
 
-function App() {
+export default function Home() {
   const [showFab, setShowFab] = useState(false);
+  const [showVisitCounter, setShowVisitCounter] = useState(false);
 
   // loader values
   const [loaded, setLoaded] = useState(false);
@@ -42,6 +47,8 @@ function App() {
       () => setReadyDelay(true),
       Math.round(Math.random() * 5000 + 2000),
     );
+
+    setTimeout(() => setShowVisitCounter(true), 3000);
 
     // hide and show
     window.addEventListener("scroll", () => {
@@ -98,6 +105,16 @@ function App() {
         >
           <div className="relative w-full overflow-x-hidden overflow-y-auto">
             <HomeSection navbarRef={navbarRef} />
+            <CSSTransition
+              in={showVisitCounter}
+              timeout={500}
+              classNames="fade"
+              unmountOnExit
+            >
+              <div className="flex w-full justify-center">
+                <VisitCounter />
+              </div>
+            </CSSTransition>
             <ExamplesSection />
             <ServicesSection />
             <ContactSection ref={contactSectionRef} />
@@ -116,8 +133,11 @@ function App() {
             >
               <FloatingButton ref={fabRef}>
                 <Link to="contact-section" smooth={true} duration={500}>
-                  <img
+                  <Image
                     src={whatsappImg}
+                    alt="WhatsApp contacto"
+                    width={112}
+                    height={112}
                     className="h-28 animate-[shakeAndZoom_7s_infinite_ease-in-out]"
                   />
                 </Link>
@@ -126,8 +146,27 @@ function App() {
           </div>
         </div>
       </CSSTransition>
+
+      <style jsx>{`
+        .visit-counter {
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 20px;
+          padding: 8px 12px;
+          box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+        }
+
+        .visit-counter:hover {
+          transform: translateY(-2px);
+          box-shadow:
+            0 8px 30px rgba(0, 0, 0, 0.15),
+            0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+      `}</style>
     </>
   );
 }
-
-export default App;

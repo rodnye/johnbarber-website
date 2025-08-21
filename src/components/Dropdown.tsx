@@ -12,7 +12,9 @@ export function Dropdown({ show, children, nodeRef }: Props) {
   return (
     <StyledWrapper
       className="w-full"
-      $height={nodeRef.current ? nodeRef.current.getBoundingClientRect().height : 0}
+      $height={
+        nodeRef.current ? nodeRef.current.getBoundingClientRect().height : 0
+      }
     >
       <div
         className={cx(

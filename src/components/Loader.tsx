@@ -1,15 +1,16 @@
 import { useImageLoader } from "../utils/loader";
 import styled from "styled-components";
-import imageSrc from "../assets/icon_logo.svg";
+import icon from "@/assets/icon_logo.svg";
+import { Image } from "@/components/Image";
 
 export function Loader({ className = "" }) {
-  const { isLoaded } = useImageLoader([imageSrc]);
+  const { isLoaded } = useImageLoader([icon.src]);
 
   if (!isLoaded) return <div> loading... </div>;
-
+  console.log(icon);
   return (
     <LoaderContainer className={className}>
-      <img className="image" src={imageSrc} alt="JohnBarber Logo" />
+      <Image className="image" src={icon} alt="JohnBarber Logo" />
       <div className="loader">
         <div className="block" />
         <div className="block" />

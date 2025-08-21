@@ -29,7 +29,6 @@ export function AnimatedTextSwitcher({
   );
 }
 
-
 const StyledWrapper = styled.div<{ $count: number }>`
   .card {
     padding: 1rem 2rem;
@@ -61,18 +60,18 @@ const StyledWrapper = styled.div<{ $count: number }>`
     padding: 0 0.3rem;
     animation: spin_4991 ${(props) => props.$count * 1.2}s infinite;
   }
-  
+
   /** Scroll all words from bottom to top for steps */
   @keyframes spin_4991 {
     ${(props) => {
-      let part = 100 / props.$count;
-      let a = part * 0.4;
-      let b = part - a;
+      const part = 100 / props.$count;
+      const a = part * 0.4;
+      const b = part - a;
       return Array(props.$count * 2)
         .fill("")
         .map((_, i) => {
-          let j = i % 2; // 0 o 1
-          let labelI = Math.ceil((i + 1) / 2);
+          const j = i % 2; // 0 o 1
+          const labelI = Math.ceil((i + 1) / 2);
           return `
           ${part * (labelI - 1) + (j == 0 ? a : a + b)}% {
             transform: translateY(${j == 1 ? labelI * -100 : labelI * -100 - 2}%);
