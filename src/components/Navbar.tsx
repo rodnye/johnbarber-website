@@ -30,18 +30,6 @@ export function Navbar({ menuOptions, ref }: Props) {
     setIsOpen(false);
   };
 
-  // Cerrar menú al hacer clic fuera de él
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   return (
     <nav
       className={`fixed top-0 z-50 w-full transition-all duration-300 ease-out ${
@@ -67,7 +55,7 @@ export function Navbar({ menuOptions, ref }: Props) {
           </div>
           <Dropdown show={isOpen} nodeRef={menuRef}>
             <ul
-              className="mt-2 flex w-full flex-col items-center rounded-lg bg-gray-900/95 py-4 text-xl text-white backdrop-blur-lg"
+              className="mt-2 flex w-full flex-col items-center rounded-lg py-4 text-xl text-white"
               ref={menuRef}
             >
               {menuOptions.map((item) => (

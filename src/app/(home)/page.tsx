@@ -17,6 +17,7 @@ import whatsappImg from "@/assets/whatsapp_logo.svg";
 import heroImg from "@/assets/hero.jpg";
 import { Link } from "react-scroll";
 import { VisitCounter } from "@/components/VisitCounter";
+import { MapSection } from "@/sections/map";
 
 export default function Home() {
   const [showFab, setShowFab] = useState(false);
@@ -105,19 +106,14 @@ export default function Home() {
         >
           <div className="relative w-full overflow-x-hidden overflow-y-auto">
             <HomeSection navbarRef={navbarRef} />
-            <CSSTransition
-              in={showVisitCounter}
-              timeout={500}
-              classNames="fade"
-              unmountOnExit
-            >
-              <div className="flex w-full justify-center">
-                <VisitCounter />
-              </div>
-            </CSSTransition>
+
+            <div className="flex w-full justify-center">
+              <VisitCounter />
+            </div>
             <ExamplesSection />
             <ServicesSection />
             <ContactSection ref={contactSectionRef} />
+            <MapSection />
 
             <footer className="bg-gray-950 p-6 text-center text-white">
               <p>JohnBarber 2025</p>

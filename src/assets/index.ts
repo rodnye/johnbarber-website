@@ -7,7 +7,6 @@ import hair06 from "./hair_06.jpg";
 import hair07 from "./hair_07.jpg";
 import hair08 from "./hair_08.jpg";
 import hair09 from "./hair_09.jpg";
-import hair10 from "./hair_10.jpg";
 import lines01 from "./lines_01.svg";
 import lines02 from "./lines_02.svg";
 import img01 from "./img_01.svg";
@@ -36,7 +35,6 @@ const hairs: StaticImageData[] = [
   hair07,
   hair08,
   hair09,
-  hair10,
 ];
 const decors: StaticImageData[] = [
   img01,
