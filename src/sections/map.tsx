@@ -1,9 +1,9 @@
+/*
 import { Element } from "react-scroll";
 import { TitleSection } from "@/components/Typography";
 import { decors } from "@/assets";
 import { useMediaQuery } from "react-responsive";
 import { useEffect, useRef, useState } from "react";
-
 export function MapSection() {
   const isMediumScreen = useMediaQuery({ minWidth: "40rem" });
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -97,3 +97,4 @@ export function MapSection() {
     </Element>
   );
 }
+*/

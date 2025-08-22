@@ -17,7 +17,6 @@ import whatsappImg from "@/assets/whatsapp_logo.svg";
 import heroImg from "@/assets/hero.jpg";
 import { Link } from "react-scroll";
 import { VisitCounter } from "@/components/VisitCounter";
-import { MapSection } from "@/sections/map";
 
 export default function Home() {
   const [showFab, setShowFab] = useState(false);
@@ -113,7 +112,6 @@ export default function Home() {
             <ExamplesSection />
             <ServicesSection />
             <ContactSection ref={contactSectionRef} />
-            <MapSection />
 
             <footer className="bg-gray-950 p-6 text-center text-white">
               <p>JohnBarber 2025</p>
