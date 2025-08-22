@@ -3,9 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useCSSLoader, useImageLoader } from "@/utils/loader";
-import { FloatingButton } from "@/components/FloatingButton";
 import { Loader } from "@/components/Loader";
-import { Image } from "@/components/Image";
 
 import { HomeSection } from "@/sections/home";
 import { ExamplesSection } from "@/sections/examples";
@@ -15,11 +13,11 @@ import { ContactSection } from "@/sections/contact";
 import textLogoImg from "@/assets/text_logo.svg";
 import whatsappImg from "@/assets/whatsapp_logo.svg";
 import heroImg from "@/assets/hero.jpg";
-import { Link } from "react-scroll";
 import { VisitCounter } from "@/components/VisitCounter";
+import { MapSection } from "@/sections/map";
+import { Footer } from "@/sections/footer";
 
 export default function Home() {
-  const [showFab, setShowFab] = useState(false);
   const [showVisitCounter, setShowVisitCounter] = useState(false);
 
   // loader values
@@ -49,18 +47,6 @@ export default function Home() {
     );
 
     setTimeout(() => setShowVisitCounter(true), 3000);
-
-    // hide and show
-    window.addEventListener("scroll", () => {
-      if (!contactSectionRef.current || !navbarRef.current) return;
-
-      if (
-        navbarRef.current.getBoundingClientRect().bottom > 0 ||
-        contactSectionRef.current.getBoundingClientRect().top < innerHeight
-      )
-        setShowFab(false);
-      else setShowFab(true);
-    });
   }, []);
 
   useEffect(() => {
@@ -112,31 +98,9 @@ export default function Home() {
             <ExamplesSection />
             <ServicesSection />
             <ContactSection ref={contactSectionRef} />
+            <MapSection />
 
-            <footer className="bg-gray-950 p-6 text-center text-white">
-              <p>JohnBarber 2025</p>
-              <p>Todos los derechos reservados.</p>
-            </footer>
-
-            <CSSTransition
-              in={showFab}
-              nodeRef={fabRef}
-              timeout={300}
-              classNames="zoom"
-              unmountOnExit
-            >
-              <FloatingButton ref={fabRef}>
-                <Link to="contact-section" smooth={true} duration={500}>
-                  <Image
-                    src={whatsappImg}
-                    alt="WhatsApp contacto"
-                    width={112}
-                    height={112}
-                    className="h-28 animate-[shakeAndZoom_7s_infinite_ease-in-out]"
-                  />
-                </Link>
-              </FloatingButton>
-            </CSSTransition>
+            <Footer />
           </div>
         </div>
       </CSSTransition>
