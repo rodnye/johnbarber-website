@@ -37,7 +37,6 @@ export default function Home() {
   const appRef = useRef(null);
   const navbarRef = useRef<HTMLDivElement>(null);
   const contactSectionRef = useRef<HTMLDivElement>(null);
-  const fabRef = useRef(null);
 
   useEffect(() => {
     // a fake additional time for loader
@@ -104,27 +103,6 @@ export default function Home() {
           </div>
         </div>
       </CSSTransition>
-
-      <style jsx>{`
-        .visit-counter {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 20px;
-          padding: 8px 12px;
-          box-shadow:
-            0 4px 20px rgba(0, 0, 0, 0.1),
-            0 0 0 1px rgba(255, 255, 255, 0.1);
-          transition: all 0.3s ease;
-        }
-
-        .visit-counter:hover {
-          transform: translateY(-2px);
-          box-shadow:
-            0 8px 30px rgba(0, 0, 0, 0.15),
-            0 0 0 1px rgba(255, 255, 255, 0.2);
-        }
-      `}</style>
     </>
   );
 }

@@ -1,6 +1,23 @@
 import { Visit } from "@/@types/visit";
 import { prisma } from "./db";
 
+interface CacheValue<T = number> {
+  value: T;
+  needUpdate: boolean;
+  timestamp?: number;
+}
+
+const cache: Record<"visitsCount" | "allVisitsCount", CacheValue> = {
+  visitsCount: {
+    value: 0,
+    needUpdate: true,
+  },
+  allVisitsCount: {
+    value: 0,
+    needUpdate: true,
+  },
+};
+
 export const addVisit = async (userAgent: string, ip: string | string[]) => {
   try {
     const trackerDelay = new Date(Date.now() - 20 * 60 * 1000); // 20min
@@ -32,6 +49,9 @@ export const addVisit = async (userAgent: string, ip: string | string[]) => {
       },
     });
 
+    cache.visitsCount.needUpdate = true;
+    cache.allVisitsCount.needUpdate = true;
+
     console.log("New visit recorded:", visit.id);
     return visit;
   } catch (error) {
@@ -44,8 +64,12 @@ export const addVisit = async (userAgent: string, ip: string | string[]) => {
 
 export const getAllVisitsCount = async (): Promise<number> => {
   try {
-    const totalVisits = await prisma.visit.count();
-    return totalVisits;
+    if (cache.allVisitsCount.needUpdate) {
+      const totalVisits = await prisma.visit.count();
+      cache.allVisitsCount.needUpdate = false;
+      cache.allVisitsCount.value = totalVisits;
+    }
+    return cache.allVisitsCount.value;
   } catch (error) {
     console.error("Error getting total visits:", error);
     throw error;
@@ -56,14 +80,18 @@ export const getAllVisitsCount = async (): Promise<number> => {
 
 export const getVisitsCount = async (): Promise<number> => {
   try {
-    const uniqueUserAgents = await prisma.visit.groupBy({
-      by: ["userAgent"],
-      _count: {
-        userAgent: true,
-      },
-    });
+    if (cache.visitsCount.needUpdate) {
+      const uniqueUserAgents = await prisma.visit.groupBy({
+        by: ["userAgent"],
+        _count: {
+          userAgent: true,
+        },
+      });
+      cache.visitsCount.needUpdate = false;
+      cache.visitsCount.value = uniqueUserAgents.length;
+    }
 
-    return uniqueUserAgents.length;
+    return cache.visitsCount.value;
   } catch (error) {
     console.error("Error getting unique user agents count:", error);
     throw error;
@@ -107,12 +135,10 @@ export const getAllVisits = async (page: number = 1, limit: number = 10) => {
 
 export const getTotalPages = async (limit: number = 10): Promise<number> => {
   try {
-    const totalVisits = await prisma.visit.count();
+    const totalVisits = await getAllVisitsCount();
     return Math.ceil(totalVisits / limit);
   } catch (error) {
     console.error("Error getting total pages:", error);
     throw error;
-  } finally {
-    await prisma.$disconnect();
   }
 };

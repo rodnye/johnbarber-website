@@ -1,10 +1,10 @@
-# 💈 Johnbarber Website
+# 💈 TheBlessed Style Website
 
-> 🌐 URL: https://johnbarber.vercel.app
+> 🌐 URL: https://theblessedstyle.onrender.com
 
 ## Description
 
-The Johnbarber website is designed to showcase barber services and provide an easy way for customers to get in touch.
+This website is designed to showcase barber services and provide an easy way for customers to get in touch.
 
 ## Requirements
 
