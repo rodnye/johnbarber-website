@@ -57,8 +57,6 @@ export const addVisit = async (userAgent: string, ip: string | string[]) => {
   } catch (error) {
     console.error("Error tracking visit:", error);
     throw error;
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
@@ -73,8 +71,6 @@ export const getAllVisitsCount = async (): Promise<number> => {
   } catch (error) {
     console.error("Error getting total visits:", error);
     throw error;
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
@@ -95,8 +91,6 @@ export const getVisitsCount = async (): Promise<number> => {
   } catch (error) {
     console.error("Error getting unique user agents count:", error);
     throw error;
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
@@ -109,8 +103,6 @@ export const getVisitsWithFakeCount = async (): Promise<number> => {
   } catch (error) {
     console.error("Error getting visits with fake count:", error);
     throw error;
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
@@ -128,8 +120,6 @@ export const getAllVisits = async (page: number = 1, limit: number = 10) => {
   } catch (error) {
     console.error("Error getting visits:", error);
     throw error;
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
